@@ -11,8 +11,9 @@ builder.prismaObject("Anime", {
 });
 
 builder.queryField("animes", (t) =>
-	t.prismaField({
-		type: ["Anime"],
+	t.prismaConnection({
+		type: "Anime",
+		cursor: "id",
 		resolve: (query, _parent, _args, _ctx, _info) =>
 			prisma.anime.findMany({ ...query }),
 	})
